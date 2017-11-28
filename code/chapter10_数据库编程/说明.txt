@@ -1,0 +1,48 @@
+一、文件目录说明：
+1、jdbcdriver下存放了访问mysql和sql server 2000，2008需要的jar文件。
+
+2、addressdb-sqlserver.sql和addressdb-mysql.sql是建表的sql语句。
+
+3、SimpleDBConnector是连接数据库的一个简单例子;
+   PropertiesTest是使用配置文件访问数据库的例子；
+   database.properties是配置文件。
+
+4、AddressBookManager,Person,PersonDao,database.properties和4个.jpg文件
+   是运行AddressBookManager需要的文件，该程序可以对库中的内容添加、删除、修改。
+   
+
+二、使用步骤：
+1、建立数据库: 
+   在mysql中建立一个名字是addressdb的库，
+   在sql server 2008或2000中建立addressdb库
+
+2、建立person表:
+   在Mysql的SQL编辑器中直接运行addressdb-mysql.sql实现建表
+   在sql server 2008或2000的SQL编辑器中直接运行addressdb-sqlserver.sql实现建表
+
+3、配置classpath：加入相关jar文件(如果使用eclipse则直接导入即可)
+   （1）访问mysql需要用到mysql-connector-java-5.1.10-bin.jar文件，在classpath中加上。
+    例如：如果它们保存在c:\jdbcdriver\目录下，则在我的电脑--属性--高级--环境变量--添加变量classpath
+         (如果已经存在则直接修改)，classpath值为" .;c:\jdbcdriver\mysql-connector-java-5.1.10-bin.jar";
+   
+   （2）访问sql server 2000需要用到msbase.jar mssqlserver.jar 和msuti.jar，在classpath中加上；访问sql server 2008需要用到sqljdbc4.jar
+    配置方法与（1）类似。
+
+4、修改用户名和密码
+   （1）修改database.properties文件，将“用户名”和“密码”改成你数据库的用户名和密码
+   （2）修改SimpleDBConnector.java中的语句： 
+       conn=DriverManager.getConnection("jdbc:mysql://localhost/addressdb", "root","****");
+       conn = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=addressdb", "sa", "****");
+       将root，sa替换为你的数据库的用户名；****替换为你的数据库密码         
+
+5、在textpad中打开SimpleDBConnector.java，AddressBookManager.java编译后，即可运行。
+
+
+三、注意：
+1、mySql版本为5.1，mySqlFront版本为5.1
+
+2、如果使用sql server 2000,必须安装sp4包，否则无法连接。
+   配置服务器的安全性-->登录--->登录属性-->身份验证方式为sql server身份验证。
+
+3、如果使用sql server 2005,使用的jar文件与sql server 2000不相同,注册和连接语句不同。
+

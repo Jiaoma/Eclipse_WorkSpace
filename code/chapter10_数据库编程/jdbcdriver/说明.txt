@@ -1,0 +1,8 @@
+1、连接mysql需要的jar包
+   mysql-connector-java-5.1.10-bin.jar
+
+2、连接sql server 2000需要的jar包（sql server 2000必须安装sp4）
+   msbase.jar mssqlserver.jar msuti.jar
+
+3、连接 sql server 2008 需要的jar包
+   sqljdbc4.jar
